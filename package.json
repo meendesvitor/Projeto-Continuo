@@ -1,21 +1,25 @@
 {
-  "name": "aula-9",
+  "name": "projeto-continuo",
   "version": "1.0.0",
-  "description": "",
+  "description": "project",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leandro-bsf/Projeto-Continuo.git"
+  },
+  "author": "leandro",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/leandro-bsf/Projeto-Continuo/issues"
+  },
+  "homepage": "https://github.com/leandro-bsf/Projeto-Continuo#readme",
   "dependencies": {
     "express": "^4.17.3",
-    "express-handlebars": "^6.0.3",
-    "mongodb": "^4.5.0",
+    "express-handlebars": "^6.0.4",
     "mongoose": "^6.2.10",
-    "nodemon": "^2.0.15",
     "pg": "^8.7.3",
     "sequelize": "^6.18.0"
   }

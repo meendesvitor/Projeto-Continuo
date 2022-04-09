@@ -10,8 +10,16 @@ module.exports = {
 
         const { nome, proprietario, endereco, tipo, raca } = req.body;
         const animal = new Animal({ nome, proprietario, endereco, tipo, raca });
-        await animal.save();
-        res.redirect('/home');
+
+        await animal.save(function(err){
+            if(err){
+                console.log(err);
+            }     else {
+                res.redirect('/home');
+            }
+           
+        });
+   
     },
     async getList(req, res) {
         Animal.find().then((animal) => {
