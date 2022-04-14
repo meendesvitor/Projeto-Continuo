@@ -4,6 +4,16 @@ const mongoose = require('mongoose');
 const handlebars = require('express-handlebars');
 const  express  =  require('express');
 const  app  =  express();
+var cookieParser = require('cookie-parser');
+var session = require('express-session');
+app.use(cookieParser());
+
+app.use(session({
+    secret: 'textosecreto',
+    saveUninitialized: true,
+    cookie: { maxAge: 30 * 60 * 1000 }
+}));
+
 
 app.engine('handlebars', handlebars.engine({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');

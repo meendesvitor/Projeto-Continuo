@@ -8,17 +8,29 @@ const  path  =  require('path');
 });*/
 
 module.exports = {
+    async getLogout(req, res) {
+        req.session.destroy();
+        res.redirect('/');
+    },
+    async postLogin(req, res) {
+        console.log('1111111')
+        db.Usuario.findAll({ where: { login: req.body.login, senha: req.body.senha } }).then(usuarios => {
+            if (usuarios.length > 0) {
+                console.log('2222')
+                req.session.login = req.body.login;
+                res.redirect('/home');
+            } else {
+                console.log('333333')
+                res.redirect('/');
+            }
+        });
+    },
+
+
     async getLogin(req, res) {
         res.render('usuario/login', { layout: 'noMenu.handlebars' });
     },
-    async postLogin(req, res) {
-        db.Usuario.findAll({ where: { login: req.body.login, senha: req.body.senha } }).then(usuarios => {
-            if (usuarios.length > 0) {
-                res.render('home');
-            } else
-                res.redirect('/');
-        });
-    },
+
     async getRecuperarSenha(req, res) {
         db.Usuario.findAll({ where: { login: req.params.login } }).then(usuarios => {
             if (usuarios.length > 0) {

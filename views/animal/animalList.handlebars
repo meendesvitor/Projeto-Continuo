@@ -4,7 +4,9 @@
         <td>Proprietario</td>​
         <td> Endereco</td>
         <td> Tipo</td>
-        <td> Raca</td>​
+        <td> Raca</td>
+        <td>Editar</td>
+        <td>Deletar</td>​
     </tr>​
     {{#each animal}}​
     <tr>​
@@ -12,7 +14,10 @@
         <td>{{proprietario}}</td>​
         <td>{{endereco}}</td>
         <td>{{tipo}}</td>
-        <td>{{raca}}</td>​
+        <td>{{raca}}</td>
+        <td> <a href="animalEdit/{{_id}}">Editar</a></td>
+        <td> <a href="animalDelete/{{_id}}">Deletar</a></td>
+​
     </tr>​
     {{/each}}​
 </table>

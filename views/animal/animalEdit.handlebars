@@ -1,0 +1,23 @@
+<form action="/animalEdit" method="POST">
+<input type="hidden" name="id" value="{{animal._id}}">
+
+<p>Nome: <input type="text" name="nome"
+value="{{animal.nome}}"></p>
+
+<p>Proprietario:<input type="text" name="proprietario"
+value="{{animal.proprietario}}"></p> 
+
+<p>Endereco:<input type="text" name="endereco"
+value="{{animal.endereco}}"></p> 
+
+<p> Tipo:  <input type="tipo" 
+name="tipo"
+value="{{animal.tipo}}"></p>
+
+<p> Raca: <input type="teste"
+name="raca"
+value="{{animal.raca}}"></p> 
+
+<br><br>
+<input type="submit" value="Editar">
+</form>
