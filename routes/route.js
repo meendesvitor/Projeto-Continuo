@@ -37,4 +37,5 @@ route.post("/animalCreate", controllerAnimal.postCreate);
 route.get("/animalList", controllerAnimal.getList);
 route.get("/animalEdit/:id", controllerAnimal.getEdit);
 route.post("/animalEdit", controllerAnimal.postEdit);
+route.get("/alertaDelete/:id", controllerAnimal.getAlert);
 route.get("/animalDelete/:id", controllerAnimal.getDelete);

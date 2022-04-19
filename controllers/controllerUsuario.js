@@ -3,9 +3,10 @@ const db = require('../config/db_sequelize');
 const Usuario = require('../models_postgres/usuario');
 const  path  =  require('path');
 
-db.sequelize.sync({force: true}).then(() => {
-    console.log('{ force: true }');
-});
+
+/*db.sequelize.sync({ force: true }).then(() => {
+console.log('{ force: true }');
+});*/
 
 module.exports = {
     async getLogout(req, res) {
