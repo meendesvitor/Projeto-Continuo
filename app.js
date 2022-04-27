@@ -1,24 +1,19 @@
 const db_mongoose = require('./config/db_mongoose');
-const routes = require('./routes/route.js');
+const routes = require('./routes/route');
 const mongoose = require('mongoose');
 const handlebars = require('express-handlebars');
-const  express  =  require('express');
-const  app  =  express();
-var cookieParser = require('cookie-parser');
+const express = require('express');
 var session = require('express-session');
-app.use(cookieParser());
-
-app.use(session({
-    secret: 'textosecreto',
-    saveUninitialized: true,
-    cookie: { maxAge: 30 * 60 * 1000 }
-}));
-
-
-app.engine('handlebars', handlebars.engine({ defaultLayout: 'main' }));
-app.set('view engine', 'handlebars');
-
+const middlewares = require('./middlewares/middlewares');
+const app = express();
+const path = require('path');
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({secret:'textosecreto',saveUninitialized:true,cookie:{maxAge: 30*60*1000}}));
+app.engine('handlebars', handlebars.engine({defaultLayout:'main'}));
+app.set('view engine','handlebars');
+app.use(middlewares.logRegister,middlewares.sessionControl)
 app.use(express.json());
+
 app.use(express.urlencoded({ extended: true }));
 
 app.use(routes);

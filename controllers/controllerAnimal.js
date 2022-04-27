@@ -10,7 +10,9 @@ module.exports = {
     async postCreate(req, res) {
 
         const { nome, proprietario, endereco, tipo, raca } = req.body;
-        const animal = new Animal({ nome, proprietario, endereco, tipo, raca });
+        const imagem = req.imageName;
+        console.log(imagem);
+        const animal = new Animal({ nome, proprietario, endereco, tipo, raca, imagem });
         await animal.save();
         res.redirect('/home');
 
@@ -31,7 +33,8 @@ module.exports = {
 
     async postEdit(req, res) {
         await Animal.findOneAndUpdate({ _id: req.body.id }, req.body);
-        res.redirect('animal/animalList');
+        
+        res.redirect('/animalList');
     },
 
     async getAlert(req, res) {

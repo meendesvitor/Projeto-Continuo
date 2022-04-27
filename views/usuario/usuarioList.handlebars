@@ -5,12 +5,14 @@
         <td> Pergunta Secreta</td>
         <td> Resposta Secreta</td>
     </tr>
-    {{#each usuarios}}
+    {{#each usuario}}
     <tr>
         <td>{{login}}</td>
         <td>{{senha}}</td>
         <td>{{pergunta_secreta}}</td>
         <td>{{resposta_pergunta}}</td>
+        <td>  <a href="usuarioEdit/{{id}}">Editar</a> </td>
+        <td> <a href="alertaDelete/{{id}}">Deletar</a> </td>
     </tr>
     {{/each}}
 </table>

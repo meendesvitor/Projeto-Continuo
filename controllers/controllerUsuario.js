@@ -5,7 +5,7 @@ const  path  =  require('path');
 
 
 /*db.sequelize.sync({ force: true }).then(() => {
-console.log('{ force: true }');
+    console.log('{ force: true }');
 });*/
 
 module.exports = {
@@ -66,5 +66,39 @@ module.exports = {
         db.Usuario.findAll().then(usuario => {
             res.render('usuario/usuarioList', { usuario: usuario.map(usuario => usuario.toJSON()) });
         });
+    },
+    async getEdit(req, res) {
+        await Usuario.findOne({ id: req.params.id }).then((teste) => {
+            res.render('usuario/usuarioEdit', {
+                teste: teste.toJSON()
+            });
+        });
+    },
+    async postEdit(req, res) {
+        await Usuario.update({
+            login: req.params.login,
+            senha: req.params.senha,
+            pergunta: req.params.pergunta,
+            resposta: req.params.resposta,
+
+        }, {
+            where: {
+
+                id: req.params.id,
+            },
+        });
+        db.Usuario.findByPK(req.prams.id).the((result) => res.json(result));
+
+    },
+
+    async getAlert(req, res) {
+
+        res.render('usuario/alertaDelete', { id: req.params.id });
+
+    },
+    async getDelete(req, res) {
+        db.Usuario.destroy({ where: { id: req.params.id } });
+
+        res.redirect('/usuarioList');
     }
 }

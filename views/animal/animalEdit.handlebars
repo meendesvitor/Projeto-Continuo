@@ -1,4 +1,4 @@
-<form action="/animalEdit" method="POST">
+<form action="/animalEdit" method="POST" enctype="multipart/formdata">
 <input type="hidden" name="id" value="{{animal._id}}">
 
 <p>Nome: <input type="text" name="nome"
@@ -17,6 +17,8 @@ value="{{animal.tipo}}"></p>
 <p> Raca: <input type="teste"
 name="raca"
 value="{{animal.raca}}"></p> 
+<p>Imagem do Anima:</p>
+<input type="file" name="{{animal.imagem}}">
 
 <br><br>
 <input type="submit" value="Editar">
