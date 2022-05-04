@@ -33,7 +33,7 @@ module.exports = {
 
     async postEdit(req, res) {
         await Animal.findOneAndUpdate({ _id: req.body.id }, req.body);
-        
+
         res.redirect('/animalList');
     },
 
