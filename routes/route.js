@@ -1,6 +1,7 @@
 const express = require('express');
 const controllerUsuario = require('../controllers/controllerUsuario');
 const controllerAnimal = require('../controllers/controllerAnimal');
+const controllerAPI = require('../controllers/controllerAPI');
 const route = express.Router();
 
 module.exports = route;
@@ -48,6 +49,7 @@ route.get("/usuarioDelete/:id", controllerUsuario.getDelete);
 
 //Controller Animal
 //Animal-CRUD
+
 route.get("/animalCreate", controllerAnimal.getCreate);
 route.post("/animalCreate", controllerAnimal.postCreate);
 route.get("/animalList", controllerAnimal.getList);
@@ -55,3 +57,10 @@ route.get("/animalEdit/:id", controllerAnimal.getEdit);
 route.post("/animalEdit", controllerAnimal.postEdit);
 route.get("/alertaDelete/:id", controllerAnimal.getAlert);
 route.get("/animalDelete/:id", controllerAnimal.getDelete);
+
+//API
+route.get("/api/animal/:id", controllerAPI.getAnimalById);
+route.get("/api/animal", controllerAPI.getAnimal);
+route.post("/api/animal", controllerAPI.postAnimal);
+route.put('/api/animal/:id', controllerAPI.putAnimal);
+route.delete('/api/animal/:id', controllerAPI.deleteAnimal);

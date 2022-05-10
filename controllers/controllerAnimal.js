@@ -1,5 +1,5 @@
 const { redirect } = require('express/lib/response');
-const Animal = require('../models_nosql/animal.js');
+const Animal = require('../models_nosql/animal');
 
 
 module.exports = {
