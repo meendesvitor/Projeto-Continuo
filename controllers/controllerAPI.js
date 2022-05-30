@@ -28,5 +28,14 @@ module.exports = {
         await Animal.findOneAndRemove({ _id: { $in: req.params.id } }).then((animal) => {
             return res.json({ "data": { "status": "success", animal } });
         });
+    },
+    async getReceitaById(req, res) {
+        const { id } = req.params;
+        receita = await Receita.findById(id, (err, receita) => {
+            if (err) {
+                return res.status(204).json();
+            }
+        });
+        return res.json({ "data": { "status": "success", animal } });
     }
 }

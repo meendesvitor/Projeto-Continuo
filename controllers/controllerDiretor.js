@@ -1,13 +1,12 @@
 const Sequelize = require('sequelize');
 const db = require('../config/db_sequelize');
-const Usuario = require('../models_postgres/usuario');
+const Diretor = require('../models_postgres/diretor');
 const  path  =  require('path');
 
 
-/*db.sequelize.sync({ force: true }).then(() => {
+db.sequelize.sync({ force: true }).then(() => {
     console.log('{ force: true }');
-});*/
-
+});
 module.exports = {
     async getLogout(req, res) {
         req.session.destroy();
@@ -15,8 +14,8 @@ module.exports = {
     },
     async postLogin(req, res) {
 
-        db.Usuario.findAll({ where: { login: req.body.login, senha: req.body.senha } }).then(usuario => {
-            if (usuario.length > 0) {
+        db.Diretor.findAll({ where: { login: req.body.login, senha: req.body.senha } }).then(diretor => {
+            if (diretor.length > 0) {
 
                 req.session.login = req.body.login;
                 res.redirect('/home');
@@ -29,36 +28,41 @@ module.exports = {
 
 
     async getLogin(req, res) {
-        res.render('usuario/login', { layout: 'noMenu.handlebars' });
+        // res.render('login_Diretor');
+        res.render('diretor/login_Diretor', { layout: 'noMenu.handlebars' });
     },
 
     async getRecuperarSenha(req, res) {
-        db.Usuario.findAll({ where: { login: req.params.login } }).then(usuario => {
-            if (usuario.length > 0) {
-                res.render('usuario/recuperarSenha', { layout: 'noMenu.handlebars', login: req.params.login, pergunta: usuario[0].pergunta_secreta });
+        db.Diretor.findAll({ where: { login: req.params.login } }).then(diretor => {
+            if (diretor.length > 0) {
+                res.render('diretor/recuperarSenha', { layout: 'noMenu.handlebars', login: req.params.login, pergunta: usuario[0].pergunta_secreta });
             } else {
                 res.redirect('/');
             }
         });
     },
     async postRecuperarSenha(req, res) {
-        db.Usuario.findAll({ where: { login: req.body.login, resposta_pergunta: req.body.resposta } }).then(usuario => {
-            if (usuario.length > 0) {
-                res.render('usuario/senhaRecuperada', { layout: 'noMenu.handlebars', senha: usuario[0].senha });
+        db.Diretor.findAll({ where: { login: req.body.login, resposta_pergunta: req.body.resposta } }).then(diretor => {
+            if (diretor.length > 0) {
+                res.render('diretor/senhaRecuperada', { layout: 'noMenu.handlebars', senha: diretor[0].senha });
             } else {
                 res.redirect('/');
             }
         });
     },
     async getCreate(req, res) {
-        res.render('usuario/usuarioCreate');
+        res.render('diretor/diretorCreate');
     },
     async postCreate(req, res) {
-        db.Usuario.create({
+        db.Diretor.create({
             login: req.body.login,
             senha: req.body.senha,
             pergunta_secreta: req.body.pergunta,
             resposta_pergunta: req.body.resposta,
+            turma: req.boby.turma,
+            turno: req.body.turno
+           
+
         });
         res.redirect('/home');
     },

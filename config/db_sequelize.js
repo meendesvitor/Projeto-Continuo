@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const sequelize = new Sequelize('web3_db', 'postgres', 'leandro1710', {
+const sequelize = new Sequelize('Proj_Integrador', 'postgres', 'leandro1710', {
     host: 'localhost',
     dialect: 'postgres'
 })
@@ -9,5 +9,6 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 db.Usuario = require('../models_postgres/usuario.js')(sequelize, Sequelize);
+db.Professor = require('../models_postgres/diretor.js')(sequelize, Sequelize);
 
 module.exports = db;
