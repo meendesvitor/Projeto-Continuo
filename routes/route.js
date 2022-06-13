@@ -34,6 +34,7 @@ route.get("/logout", controllerUsuario.getLogout);
 
 //Controller Usuario
 //Usuario - Login e Recuperação de Senha
+//Teste git ihuuu
 route.get("/", controllerUsuario.getLogin);
 route.post("/login", controllerUsuario.postLogin);
 route.get("/recuperarSenha/:login", controllerUsuario.getRecuperarSenha);
